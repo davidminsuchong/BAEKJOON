@@ -1,26 +1,26 @@
 #9020
 
 import math
+import sys
 
 C = []
 T = int(input())
 for i in range(T):
-    C.append(int(input()))
+    C.append(int(sys.stdin.readline()))
 N = max(C)
 
-A = [False,False]+[True]*(N-1)
-B = []
+A = list(range(2,N+1))
+B = A.copy()
 
-for i in range(2,math.ceil(math.sqrt(N))+1):
-    if A[i] == True:
-        j = i**2
+for i in range(len(A)):
+    if bool(A[i]) == True:
+        j = A[i]**2
         while j<N+1:
-            A[j]=False
-            j = j+i
-
-for i in range(N+1):
-    if A[i] == True:
-        B.append(i)
+            try:
+                B.remove(j)
+                j = j+A[i]
+            except:
+                j = j+A[i]
 
 for i in range(T):
     diff = 10000
@@ -28,7 +28,7 @@ for i in range(T):
         k=0
         if B[j]>=C[i]:
             break
-        while k<=j:
+        while B[k]<=C[i]-B[j] and k<=j:
             if B[j]+B[k]==C[i] and abs(B[j]-B[k])<diff:
                 a1 = B[k]
                 a2 = B[j]
