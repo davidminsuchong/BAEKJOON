@@ -18,6 +18,7 @@ for i in range(len(A)):
         while j<N+1:
             try:
                 B.remove(j)
+                A[j-2] = False
                 j = j+A[i]
             except:
                 j = j+A[i]
