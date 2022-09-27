@@ -1,6 +1,5 @@
 #9020
 
-import math
 import sys
 
 C = []
@@ -24,15 +23,15 @@ for i in range(len(A)):
                 j = j+A[i]
 
 for i in range(T):
-    diff = 10000
     for j in range(len(B)):
-        k=0
-        if B[j]>=C[i]:
+        if B[j]>=(C[i]//2):
+            k = j
             break
-        while B[k]<=C[i]-B[j] and k<=j:
-            if B[j]+B[k]==C[i] and abs(B[j]-B[k])<diff:
-                a1 = B[k]
-                a2 = B[j]
-                diff = B[j]-B[k]
-            k+=1
-    print(a1,a2)
+    while True:
+        if B[j]+B[k]>C[i]:
+            k -= 1
+        elif B[j]+B[k]<C[i]:
+            j += 1
+        else:
+            print(B[k],B[j])
+            break
