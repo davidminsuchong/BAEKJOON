@@ -1,17 +1,29 @@
 #18870
 
-N = int(input())
-A = list(map(int,input().split()))
-B = [0]*N
+from sys import stdin
 
-for i in range(N):
-    C = [0]*N
-    for j in range(N):
-        if A[i]==A[j] and i!=j:
-            C = [0]*N
-            break
-        elif A[j]>A[i]:
-            C[j] += 1
-    for k in range(N):
-        B[k]+=C[k]
-print(B)
+def solution(n, arr):
+    answer = [0]*n
+    temp = set()
+    for i in range(n):
+        temp.add(arr[i])
+    
+    comparison = []
+    for t in temp:
+        comparison.append(t)
+    comparison = sorted(comparison)
+
+    dictionary = {}
+    for c in range(len(comparison)):
+        dictionary[comparison[c]] = c
+
+    for k in range(n):
+        answer[k] = dictionary[arr[k]]
+    
+    for k in range(n-1):
+        print(answer[k],end=" ")
+    print(answer[-1])
+
+n = int(stdin.readline())
+arr = list(map(int, stdin.readline().split()))
+solution(n,arr)

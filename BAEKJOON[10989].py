@@ -3,16 +3,12 @@
 import sys
 
 N = int(input())
-A = []
 B = [0]*10000
 
 for i in range(N):
-    a = int(sys.stdin.readline())
-    if B[a]==0:
-        A.append(a)
-    B[a] += 1
-    
-A.sort()
+    B[int(sys.stdin.readline())-1] += 1
 
-for i in A:
-    print((str(i)+"\n")*(B[i]-1)+str(i))
+for i in range(10000):
+    if B[i] != 0:
+        for j in range(B[i]):
+            print(i+1)
