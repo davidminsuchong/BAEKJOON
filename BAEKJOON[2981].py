@@ -25,7 +25,7 @@ for i in range(a):
     B = []+A
     for j in range(N-1):
         b = GCD(B[j],B[j+1])
-        if b == 1 or b in M:
+        if b == 1:
             break
         B[j+1] = b
         if j == N-2:
